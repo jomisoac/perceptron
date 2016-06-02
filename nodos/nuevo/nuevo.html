@@ -1,0 +1,56 @@
+<div ng-controller="pruebaController as vm" class="contenedor">
+    <div class="row">
+        <div class="col s12">
+            <div class="row white col s12" style="border-radius: 15px; border:2px solid #D50000; width: 100%">
+                <div class="contenedor">
+                    <div class="row">
+                        <div class="col s6">
+                            <h2><b>Algoritmo perceptron</b></h2>
+                        </div>
+                        <div class="col s2">
+                            <p></p>
+                        </div>
+                        <div class="col s4">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <!--<div class="input-field col s4 grey lighten-3"-->
+                            <!--style="border-radius: 15px; height: 37px; border: none">-->
+                            <!--&lt;!&ndash;<input id="Ientradas" type="number" ng-model="vm.entradas">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<label for="Ientradas">Entradas</label>&ndash;&gt;-->
+                            <!--<p> </p>-->
+                            <!--</div>-->
+                            <!--<div class="input-field col s4 grey lighten-3"-->
+                            <!--style="border-radius: 15px; height: 37px; border: none">-->
+                            <!--&lt;!&ndash;<input id="Isalidas" type="number" ng-model="vm.salidas">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<label for="Isalidas">Salidas</label>&ndash;&gt;-->
+                            <!--<p> </p>-->
+                            <!--</div>-->
+                            <div class="input-field col s12">
+                                <a style="border-radius: 15px; width: 100%" class="btn btn-block"
+                                   ng-click="vm.ejecutar()" value="Ejecutar">Ejecutar</a>
+                            </div>
+                            <br>
+                            <div id="matriz" class="col s6" style="border: solid 1px red"></div>
+                            <div id="entradas" class="col s3" style="border: solid 1px red"></div>
+                            <div id="salidas" class="col s3" style="border: solid 1px red"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s6">
+                            <br><br>
+                            <div id="contenido" class="col s12">
+                            </div>
+                        </div>
+                        <div class="col s6" id="grafica">
+                            <div id="graph"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

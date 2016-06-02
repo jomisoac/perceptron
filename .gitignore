@@ -1,0 +1,10 @@
+/vendor
+
+/node_modules
+
+/storage
+.yaml
+.env
+.idea
+
+/nbproject
