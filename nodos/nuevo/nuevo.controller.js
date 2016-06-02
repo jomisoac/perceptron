@@ -118,9 +118,9 @@
                 vm.suma_patrones = 0;
                 for (var i = 1; i <= 4; i++) {
                     vm.aux_error_lineal = 0;
-                    for (var j = 1; j <= 2; j++) {
+                    for (var j = 1; j <= 1; j++) {
                         vm.sum = 0;
-                        for (var k = 1; k <= 1; k++) {
+                        for (var k = 1; k <= 2; k++) {
                             vm.sum += vm.entradas_problema[k][j] * w[k][j];
                         }//fin for para recorrer las entradas y pesos
                         //funcion Escalon

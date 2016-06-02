@@ -24,9 +24,9 @@
 
         var inp = [
             {entrada: [1, 1], salida: 1},
-            {entrada: [0, 0], salida: 0},
+            {entrada: [1, 0], salida: 0},
             {entrada: [0, 1], salida: 0},
-            {entrada: [1, 0], salida: 0}
+            {entrada: [0, 0], salida: 0},
         ];
         vm.ejecutar = ejecutar;
 
@@ -47,9 +47,9 @@
             var p = 1;
             var prueba = [
                 {entrada: [1, 1], salida: 1},
-                {entrada: [0, 0], salida: 0},
-                {entrada: [0, 1], salida: 0},
                 {entrada: [1, 0], salida: 0},
+                {entrada: [0, 1], salida: 0},
+                {entrada: [0, 0], salida: 0},
             ];
             while (error >= criterio_parada) {
                 var resultados = entrenamiento(w, inp);
@@ -61,6 +61,9 @@
                 contenido.innerHTML += "  " + resultados['matrizActual'][0]+", &nbsp;&nbsp;"+resultados['matrizActual'][1] + " &nbsp;&nbsp;  ";
                 contenido.innerHTML += "<br>";
                 contenido.innerHTML += "<b>Nuevo umbral: " + resultados['matrizActual'][2]+ "<br>";
+                contenido.innerHTML += "<br>";
+                contenido.innerHTML += "<b>Valor de la funcion escalon: " + resultados['fEscalon']+ "<br>";
+                contenido.innerHTML += "<b>Error lineal: " + resultados['error_actual']+ "<br>";
                 contenido.innerHTML += "<b>Error del patron: " + error+ "<br>";
                 vm.myData.push([p, resultados['error']]);
                 p++;
@@ -125,20 +128,23 @@
 
         function entrenamiento(pesos, setEntranamiento) {
             var error = 0;
-            for (var i = 0; i < setEntranamiento.length; i++) {//recorro
+            for (var i = 0; i < setEntranamiento.length; i++) {//recorro por patrones en la matriz ejemplo
                 var pesosActuales = setEntranamiento[i]; //pesos actuales en la iteracion x
                 var umbral = obtenerSumaUmbral(pesos, pesosActuales); //umbral de cada iteracion
-                var error_actual = pesosActuales.salida - activacion(umbral); //error actual por cada patron
-                error += Math.abs(error_actual); //calculo el error actual absoluto por cada iteracion
-                for (var j = 0; j < pesos.length - 1; j++) {//actualizo la matriz de pesos y el umbral
+                var funcionEscalon = activacion(umbral)
+                var error_actual = pesosActuales.salida - funcionEscalon; //error actual por cada patron
+                error += Math.abs(error_actual); //calculo la suma del error lineal para cada iteracion
+                for (var j = 0; j < pesos.length - 1; j++) {//actualizo la matriz de pesos
                     var nuevosPesos = error_actual * rate * pesosActuales.entrada[j];
                     pesos[j] += nuevosPesos;
                 }
-                pesos[pesos.length - 1] += error_actual * rate * 1;
+                pesos[pesos.length - 1] += error_actual * rate * 1; //actualizo el umbral
             }
             return {
                 error: error / (pesos.length),
-                matrizActual: pesos
+                matrizActual: pesos,
+                fEscalon : funcionEscalon,
+                error_actual: error_actual
             };
         }
 
